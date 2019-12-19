@@ -3,24 +3,33 @@ version: '2'
 tasks:
   db:
     cmds:
-      - docker-compose up -d --build --force-recreate read-model eventstore
-      - docker-compose up -d --build --force-recreate hasura
+      - docker-compose up -d read-model-db eventstore
+      - sleep 5s # wait for 5 seconds to give the db enough time to start up
+      - docker-compose up -d hasura
 
-  start-cmd-api:
+  cmd-api:
     dir: api
     cmds:
       - DB_CONNECTION_STRING="postgres://postgres:secret@localhost:5432/postgres" PORT="8080" stack run
       
-  start-query-api:
+  read-model:
     dir: read-model
     cmds:
+      - task: db
       - READ_MODEL="postgres://postgres:secret@localhost:15432/postgres" EVENT_STORE="postgres://postgres:secret@localhost:5432/postgres" stack run
 
-  start-ui:
+  ui:
     dir: ui
     cmds:
-      - npm install
       - task start-local
+
+  up:
+    cmds:
+      - docker-compose up -d read-model-db eventstore
+      - sleep 5s # wait for 5 seconds to give the db enough time to start up
+      - docker-compose up -d hasura
+      - docker-compose up -d read-model cmd-api
+      - docker-compose up -d ui
 
   down:
     cmds:

@@ -1,24 +1,32 @@
 # Connect 4
 
-Connect 4 implemented with event sourcing and CQRS using Haskell, Elm, Postgres and Hasura.
+Connect 4 implemented with event sourcing and CQRS using Haskell, Postgres, GraphQL/Hasura and Elm.
 
 Components:
 
-- [Command API](./api/) (Haskell, Postgres)
-- [Query API](./read-model/) (Haskell, Hasura, Postgres)
-- [UI](./ui/) (Elm)
+- [Command API](https://github.com/battermann/cosmic-ray-api) (Haskell, Postgres)
+- [Query API](https://github.com/battermann/cosmic-ray-rm) (Haskell, Hasura, Postgres)
+- [UI](https://github.com/battermann/cosmic-ray-ui) (Elm)
 
-[Live Demo](https://cosmic-ray.surge.sh/)
+[Live Demo](http://cosmic-ray.surge.sh/)
 
 ## Prerequisites
 
-- Make sure you clone the git submodules e.g. with `git clone --recursive git@github.com:battermann/connect-4.git`
-- docker-compose
-- Install [Task](https://taskfile.dev/#/installation)
+- Make sure you also clone the git submodules e.g. with `git clone --recursive git@github.com:battermann/connect-4.git`
+- [Docker Compose](https://docs.docker.com/compose/)
+- [Task](https://taskfile.dev/#/installation)
 
 ## Run with docker
 
-TBD
+Run
+
+```shell
+task up
+```
+
+Note that if this task is run for the first time it will take a very very long time to build the Haskell containers.
+
+Then browse to `http://localhost:3000/`.
 
 ## Run locally
 
@@ -30,26 +38,22 @@ TBD
 - stack
 - ...
 
+Go to `./ui` and run `npm install`.
+
 ### Start services locally
 
-To run the application locally, first start up the database and Hasura with `docker-compose`:
+To run the application locally, run each of these commands in a separate terminal window:
 
 ```shell
-task db
-```
-
-Then run each of these commands in a separate terminal window:
-
-```shell
-task start-cmd-api
+task read-model
 ```
 
 ```shell
-task start-query-api
+task cmd-api
 ```
 
 ```shell
-task start-ui
+task ui
 ```
 
 ## Todos
