@@ -12,6 +12,8 @@ Components:
 
 ## Prerequisites
 
+- Make sure you clone the git submodules e.g. with `git clone --recursive git@github.com:battermann/connect-4.git`
+- docker-compose
 - Install [Task](https://taskfile.dev/#/installation)
 
 ## Run with docker
@@ -27,11 +29,6 @@ TBD
 - node/npm
 - stack
 - ...
-
-You also need to:
-
-- go to `./ui` and install npm dependencies with `npm install`
-- go to `./api` and `./read-model` and set up stack with `stack setup`
 
 ### Start services locally
 

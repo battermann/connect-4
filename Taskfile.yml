@@ -19,6 +19,7 @@ tasks:
   start-ui:
     dir: ui
     cmds:
+      - npm install
       - task start-local
 
   down:
