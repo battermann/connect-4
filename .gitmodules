@@ -1,0 +1,9 @@
+[submodule "ui"]
+	path = ui
+	url = git@github.com:battermann/cosmic-ray-ui.git
+[submodule "read-model"]
+	path = read-model
+	url = git@github.com:battermann/cosmic-ray-rm.git
+[submodule "api"]
+	path = api
+	url = git@github.com:battermann/cosmic-ray-api.git

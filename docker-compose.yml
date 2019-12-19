@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  cmd-api:
+    build:
+      context: .
+      dockerfile: ./api/Dockerfile
+    ports:
+      - 8080:8080
+    environment:
+      DB_CONNECTION_STRING: postgres://postgres:secret@eventstore:5432/postgres
+      PORT: "8080"    
+  eventstore:
+    build: ./api/docker/eventstore
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRE_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: secret
+  read-model:
+    build: ./read-model/docker/read-model
+    ports:
+      - 15432:5432
+    environment:
+      POSTGRE_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: secret
+  hasura:
+    image: hasura/graphql-engine:v1.0.0-rc.1.cli-migrations
+    ports:
+      - 8081:8080
+    volumes:
+      - ./read-model/hasura:/hasura-migrations
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:secret@read-model:5432/postgres
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: anonymous
+      HASURA_GRAPHQL_ADMIN_SECRET: secret
+    depends_on:
+      - read-model

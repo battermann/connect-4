@@ -1,0 +1,30 @@
+version: '2'
+
+tasks:
+  db:
+    cmds:
+      - docker-compose up -d --build --force-recreate read-model eventstore
+      - docker-compose up -d --build --force-recreate hasura
+
+  start-cmd-api:
+    dir: api
+    cmds:
+      - DB_CONNECTION_STRING="postgres://postgres:secret@localhost:5432/postgres" PORT="8080" stack run
+      
+  start-query-api:
+    dir: read-model
+    cmds:
+      - READ_MODEL="postgres://postgres:secret@localhost:15432/postgres" EVENT_STORE="postgres://postgres:secret@localhost:5432/postgres" stack run
+
+  start-ui:
+    dir: ui
+    cmds:
+      - task start-local
+
+  down:
+    cmds:
+      - docker-compose down
+
+  ps:
+    cmds:
+      - docker-compose ps
