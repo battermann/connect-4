@@ -1,6 +1,8 @@
 # Connect 4
 
-Connect 4 implemented with event sourcing and CQRS using Haskell, Postgres, GraphQL/Hasura and Elm.
+Exemplary event sourcing and CQRS implementation of the game _Connect 4_ using Haskell, Postgres, GraphQL/Hasura and Elm.
+
+It uses [Postgres asynchronous notification](https://www.postgresql.org/docs/12/libpq-notify.html) as a light weight pub/sub mechanism for propagating events.
 
 Components:
 
@@ -9,6 +11,12 @@ Components:
 - [UI](https://github.com/battermann/cosmic-ray-ui) (Elm)
 
 [Live Demo](http://cosmic-ray.surge.sh/)
+
+Disclaimer: Not production ready. No scalability guarantees.
+
+## Two player games
+
+The player identity is tied to a browser instance. So to play a two player game the players need to use different browser instances.
 
 ## Prerequisites
 
