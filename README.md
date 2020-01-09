@@ -6,9 +6,9 @@ It uses [Postgres asynchronous notification](https://www.postgresql.org/docs/12/
 
 Components:
 
-- [Command API](https://github.com/battermann/cosmic-ray-api) (Haskell, Postgres)
-- [Query API](https://github.com/battermann/cosmic-ray-rm) (Haskell, Hasura, Postgres)
-- [UI](https://github.com/battermann/cosmic-ray-ui) (Elm)
+- [Command API](https://github.com/battermann/cosmic-ray-api) (Haskell, Postgres) [![Build Status](https://travis-ci.org/battermann/cosmic-ray-api.svg?branch=master)](https://travis-ci.org/battermann/cosmic-ray-api)
+- [Query API](https://github.com/battermann/cosmic-ray-rm) (Haskell, Hasura, Postgres) [![Build Status](https://travis-ci.org/battermann/cosmic-ray-rm.svg?branch=master)](https://travis-ci.org/battermann/cosmic-ray-rm)
+- [UI](https://github.com/battermann/cosmic-ray-ui) (Elm) [![Build Status](https://travis-ci.org/battermann/cosmic-ray-ui.svg?branch=master)](https://travis-ci.org/battermann/cosmic-ray-ui)
 
 [Live Demo](http://cosmic-ray.surge.sh/)
 
