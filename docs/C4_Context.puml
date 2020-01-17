@@ -1,0 +1,32 @@
+@startuml C4_Elements
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+
+LAYOUT_TOP_DOWN
+
+Person(user, "User")
+
+Container(web_app, "Web Application/UI", "Elm", "Responsive user interface for playing or observing games")
+
+System_Boundary(read_side, "Read Side") {
+  ContainerDb(read_model_db, "Read Model", "Postgres", "Stores the read model")
+  Container(read_model_api, "Query API", "Hasura", "Provides a GraphQL API for querying the read model, including subscriptions")
+  Container(projection, "Projection Service", "Haskell", "Listens to new events and updates the read model")
+}
+
+System_Boundary(write_side, "Write Side") {
+  ContainerDb(event_store, "Event Store", "Postgres", "Stores domain events")
+  Container(cmd_api, "Command API", "Haskell/Servant", "HTTP/JSON API exposes endpoints for write operations")
+}
+
+Rel(user, web_app, "Uses")
+
+Rel(web_app, read_model_api, "Uses", "GraphQL/HTTP")
+Rel(web_app, cmd_api, "Uses", "HTTP/JSON")
+
+Rel(read_model_api, read_model_db, "Reads from")
+Rel(cmd_api, event_store, "Reads from and writes to")
+
+Rel(projection, event_store, "Listens to notifications")
+Rel(projection, read_model_db, "Reads from and writes to")
+
+@enduml

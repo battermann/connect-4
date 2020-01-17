@@ -2,17 +2,21 @@
 
 Exemplary event sourcing and CQRS implementation of the game _Connect 4_ using Haskell, Postgres, GraphQL/Hasura and Elm.
 
+[Live Demo](http://cosmic-ray.surge.sh/)
+
+## Overview
+
 It uses [Postgres asynchronous notification](https://www.postgresql.org/docs/12/libpq-notify.html) as a light weight pub/sub mechanism for propagating events.
 
 Components:
 
 - [Command API](https://github.com/battermann/cosmic-ray-api) (Haskell, Postgres) [![Build Status](https://travis-ci.org/battermann/cosmic-ray-api.svg?branch=master)](https://travis-ci.org/battermann/cosmic-ray-api)
-- [Query API](https://github.com/battermann/cosmic-ray-rm) (Haskell, Hasura, Postgres) [![Build Status](https://travis-ci.org/battermann/cosmic-ray-rm.svg?branch=master)](https://travis-ci.org/battermann/cosmic-ray-rm)
+- [Query API/Projection](https://github.com/battermann/cosmic-ray-rm) (Haskell, Hasura, Postgres) [![Build Status](https://travis-ci.org/battermann/cosmic-ray-rm.svg?branch=master)](https://travis-ci.org/battermann/cosmic-ray-rm)
 - [UI](https://github.com/battermann/cosmic-ray-ui) (Elm) [![Build Status](https://travis-ci.org/battermann/cosmic-ray-ui.svg?branch=master)](https://travis-ci.org/battermann/cosmic-ray-ui)
 
-[Live Demo](http://cosmic-ray.surge.sh/)
+![alt text](./out/docs/C4_Context/C4_Elements.svg)
 
-Disclaimer: Not production ready. No scalability guarantees.
+Disclaimer: No production readiness or scalability guarantees.
 
 ## Two player games
 
