@@ -3,7 +3,7 @@ version: '2'
 tasks:
   db:
     cmds:
-      - docker-compose up -d read-model-db eventstore
+      - docker-compose up -d read-model-db eventstore redis
       - sleep 5s # wait for 5 seconds to give the db enough time to start up
       - docker-compose up -d hasura
 
@@ -25,10 +25,9 @@ tasks:
 
   up:
     cmds:
-      - docker-compose up -d read-model-db eventstore
-      - sleep 5s # wait for 5 seconds to give the db enough time to start up
-      - docker-compose up -d hasura
-      - docker-compose up -d read-model cmd-api
+      - task: db
+      - docker-compose up -d query-api cmd-api publisher
+      - docker-compose up -d publisher
       - docker-compose up -d ui
 
   down:

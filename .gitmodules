@@ -7,3 +7,6 @@
 [submodule "api"]
 	path = api
 	url = git@github.com:battermann/cosmic-ray-api.git
+[submodule "publisher"]
+	path = publisher
+	url = git@github.com:battermann/cosmic-ray-pub.git

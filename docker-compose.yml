@@ -42,6 +42,17 @@ services:
       POSTGRE_USER: postgres
       POSTGRES_DB: postgres
       POSTGRES_PASSWORD: secret
+  publisher:
+    build:
+      context: ./publisher
+      dockerfile: ./Dockerfile
+      args:
+        REDIS_HOST: redis
+        REDIS_PORT: 6379
+        DB_HOST: eventstore
+        DB_NAME: postgres
+        DB_USER: postgres
+        DB_PASS: secret
   hasura:
     image: hasura/graphql-engine:v1.0.0-rc.1.cli-migrations
     ports:
@@ -55,3 +66,7 @@ services:
       HASURA_GRAPHQL_ADMIN_SECRET: secret
     depends_on:
       - read-model-db
+  redis:
+    image: redis:5.0.7
+    ports:
+      - 6379:6379
