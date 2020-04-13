@@ -15,7 +15,6 @@ tasks:
   read-model:
     dir: read-model
     cmds:
-      - task: db
       - READ_MODEL="postgres://postgres:secret@localhost:15432/postgres" EVENT_STORE="postgres://postgres:secret@localhost:5432/postgres" stack run
 
   ui:
@@ -23,11 +22,15 @@ tasks:
     cmds:
       - task start-local
 
+  pub:
+    dir: publisher
+    cmds:
+      - task start-local
+
   up:
     cmds:
       - task: db
       - docker-compose up -d query-api cmd-api publisher
-      - docker-compose up -d publisher
       - docker-compose up -d ui
 
   down:

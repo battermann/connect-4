@@ -16,11 +16,9 @@ Components:
 
 ![alt text](./out/docs/C4_Context/C4_Elements.svg)
 
-Disclaimer: No production readiness or scalability guarantees.
-
 ## Two player games
 
-The player identity is tied to a browser instance. So to play a two player game the players need to use different browser instances.
+The player identity is tied to a browser instance. So to play a two player game ideally you should play on two different devices. If played on the same device make sure to use different browser instances.
 
 ## Prerequisites
 
@@ -54,7 +52,13 @@ Go to `./ui` and run `npm install`.
 
 ### Start services locally
 
-To run the application locally, run each of these commands in a separate terminal window:
+To run the application locally, run:
+
+```shell
+task db
+```
+
+Then run each of these commands in a separate terminal window:
 
 ```shell
 task read-model
