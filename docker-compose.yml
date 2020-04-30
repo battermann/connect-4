@@ -24,14 +24,14 @@ services:
       context: ./read-model
       dockerfile: ./Dockerfile
     environment:
-      EVENT_STORE: postgres://postgres:secret@eventstore:5432/postgres
+      REDIS_URL: redis://redis:6379
       READ_MODEL: postgres://postgres:secret@read-model:5432/postgres
   eventstore:
     build: ./api/docker/eventstore
     ports:
       - 5432:5432
     environment:
-      POSTGRE_USER: postgres
+      POSTGRES_USER: postgres
       POSTGRES_DB: postgres
       POSTGRES_PASSWORD: secret
   read-model-db:
@@ -39,16 +39,22 @@ services:
     ports:
       - 15432:5432
     environment:
-      POSTGRE_USER: postgres
+      POSTGRES_USER: postgres
       POSTGRES_DB: postgres
       POSTGRES_PASSWORD: secret
+  pg-admin:
+    image: dpage/pgadmin4
+    ports:
+      - "80:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: mail@example.com
+      PGADMIN_DEFAULT_PASSWORD: secret      
   publisher:
     build:
       context: ./publisher
       dockerfile: ./Dockerfile
       args:
-        REDIS_HOST: redis
-        REDIS_PORT: 6379
+        REDIS_URL: redis://redis:6379
         DB_HOST: eventstore
         DB_NAME: postgres
         DB_USER: postgres

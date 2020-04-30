@@ -1,6 +1,15 @@
 # Connect 4
 
-Exemplary event sourcing and CQRS implementation of the game _Connect 4_ using Haskell, Postgres, GraphQL/Hasura and Elm.
+Exemplary event sourcing and CQRS implementation of the game _Connect 4_ using 
+
+- Haskell
+- PureScript
+- Elm
+- Postgres
+- Redis
+- GraphQL/Hasura
+- No ES/CQRS framework
+- No bullshit
 
 [Live Demo](http://cosmic-ray.surge.sh/)
 
@@ -59,6 +68,10 @@ task db
 ```
 
 Then run each of these commands in a separate terminal window:
+
+```shell
+task pub
+```
 
 ```shell
 task read-model
