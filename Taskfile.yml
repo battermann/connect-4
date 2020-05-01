@@ -15,7 +15,7 @@ tasks:
   read-model:
     dir: read-model
     cmds:
-      - READ_MODEL="postgres://postgres:secret@localhost:15432/postgres" EVENT_STORE="postgres://postgres:secret@localhost:5432/postgres" stack run
+      - READ_MODEL="postgres://postgres:secret@localhost:15432/postgres" REDIS_URL="redis://redis:6379" stack run
 
   ui:
     dir: ui
@@ -30,8 +30,8 @@ tasks:
   up:
     cmds:
       - task: db
-      - docker-compose up -d query-api cmd-api publisher
-      - docker-compose up -d ui
+      - docker-compose up --build --force-recreate -d query-api cmd-api publisher
+      - docker-compose up --build --force-recreate -d ui
 
   down:
     cmds:
