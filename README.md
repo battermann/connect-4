@@ -15,12 +15,11 @@ Exemplary event sourcing and CQRS implementation of the game _Connect 4_ using
 
 ## Overview
 
-It uses [Postgres asynchronous notification](https://www.postgresql.org/docs/12/libpq-notify.html) as a light weight pub/sub mechanism for propagating events.
-
 Components:
 
 - [Command API](https://github.com/battermann/cosmic-ray-api) (Haskell, Postgres) [![Build Status](https://travis-ci.org/battermann/cosmic-ray-api.svg?branch=master)](https://travis-ci.org/battermann/cosmic-ray-api)
-- [Query API/Projection](https://github.com/battermann/cosmic-ray-rm) (Haskell, Hasura, Postgres) [![Build Status](https://travis-ci.org/battermann/cosmic-ray-rm.svg?branch=master)](https://travis-ci.org/battermann/cosmic-ray-rm)
+- [Read Model/Query API](https://github.com/battermann/cosmic-ray-rm) (Haskell, Hasura, Postgres) [![Build Status](https://travis-ci.org/battermann/cosmic-ray-rm.svg?branch=master)](https://travis-ci.org/battermann/cosmic-ray-rm)
+- [Event Publisher](https://github.com/battermann/cosmic-ray-pub) (PureScript, Redis) [![Build Status](https://travis-ci.org/battermann/cosmic-ray-pub.svg?branch=master)](https://travis-ci.org/battermann/cosmic-ray-pub)
 - [UI](https://github.com/battermann/cosmic-ray-ui) (Elm) [![Build Status](https://travis-ci.org/battermann/cosmic-ray-ui.svg?branch=master)](https://travis-ci.org/battermann/cosmic-ray-ui)
 
 ![alt text](./out/docs/C4_Context/C4_Elements.svg)
@@ -87,6 +86,4 @@ task ui
 
 ## Todos
 
-- Make event-store generic
-- Extract generic event sourcing stuff into separate module
 - Elm UI: Use one out and one in port
