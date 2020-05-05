@@ -15,7 +15,7 @@ tasks:
   read-model:
     dir: read-model
     cmds:
-      - READ_MODEL="postgres://postgres:secret@localhost:15432/postgres" REDIS_URL="redis://redis:6379" stack run
+      - READ_MODEL="postgres://postgres:secret@localhost:15432/postgres" REDIS_URL="redis://localhost:6379" stack run
 
   ui:
     dir: ui
