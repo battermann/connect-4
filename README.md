@@ -11,8 +11,6 @@ Exemplary event sourcing and CQRS implementation of the game _Connect 4_ using
 - No ES/CQRS framework
 - No bullshit
 
-[Live Demo](http://cosmic-ray.surge.sh/)
-
 ## Overview
 
 Components:
